@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Онлайн магазин компьютеров</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<header>
+  <h1>Добро пожаловать в наш магазин компьютеров</h1>
+  <nav>
+    <ul>
+      <li><a href="#home">Главная</a></li>
+      <li><a href="#catalog">Каталог</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="filter">
+  <h3>Фильтры</h3>
+  <div>
+    <button onclick="filterProducts('all')">Все</button>
+    <button onclick="filterProducts('gaming')">Игровые</button>
+    <button onclick="filterProducts('office')">Офисные</button>
+    <button onclick="filterProducts('budget')">Бюджетные</button>
+    <button onclick="filterProducts('compact')">Компактные</button>
+  </div>
+
+  <div>
+    <h4>Бренд</h4>
+    <button onclick="filterByBrand('brand1')">Brand 1</button>
+    <button onclick="filterByBrand('brand2')">Brand 2</button>
+    <button onclick="filterByBrand('brand3')">Brand 3</button>
+  </div>
+
+  <div>
+    <h4>Цена</h4>
+    <button onclick="filterByPrice('low')">До 100,000 руб.</button>
+    <button onclick="filterByPrice('medium')">100,000 - 250,000 руб.</button>
+    <button onclick="filterByPrice('high')">От 250,000 руб.</button>
+  </div>
+</section>
+
+<section class="products" id="catalog">
+  <article class="product-card gaming" data-brand="brand1" data-price="250000">
+    <img src="../static/css/img/img.png" alt="Компьютер 1" />
+    <h2>Игровой ПК</h2>
+    <p>Мощный игровой компьютер с видеокартой RTX 4070.</p>
+    <button
+      class="details-btn"
+      data-name="Игровой ПК"
+      data-description="Мощный игровой компьютер с видеокартой RTX 4070."
+      data-price="250000 руб."
+      data-image="img/img.png"
+    >Подробнее</button>
+  </article>
+  <article class="product-card office" data-brand="brand2" data-price="60000">
+    <img src="../static/css/img/img_1.png" alt="Компьютер 2" />
+    <h2>Офисный ПК</h2>
+    <p>Надёжный компьютер для работы и учёбы.</p>
+    <button
+      class="details-btn"
+      data-name="Офисный ПК"
+      data-description="Надёжный компьютер для работы и учёбы."
+      data-price="60000 руб."
+      data-image="img/img_1.png"
+    >Подробнее</button>
+  </article>
+
+  <article class="product-card compact" data-brand="brand1" data-price="250000" data-category="compact">
+    <img src="../static/css/img/img_2.png" alt="Компьютер 3" />
+    <h2>Компактный ПК</h2>
+    <p>Мини-ПК для домашнего использования.</p>
+    <button
+      class="details-btn"
+      data-name="Компактный ПК"
+      data-description="Мини-ПК для домашнего использования."
+      data-price="250000 руб."
+      data-image="img/img_2.png"
+    >Подробнее</button>
+  </article>
+
+  <article class="product-card office" data-brand="brand2" data-price="150000" data-category="office">
+    <img src="../static/css/img/img_3.png" alt="Компьютер 4" />
+    <h2>Моноблок</h2>
+    <p>Современный моноблок с сенсорным экраном.</p>
+    <button
+      class="details-btn"
+      data-name="Моноблок"
+      data-description="Современный моноблок с сенсорным экраном."
+      data-price="150000 руб."
+      data-image="img/img_3.png"
+    >Подробнее</button>
+  </article>
+
+  <article class="product-card gaming" data-brand="brand1" data-price="300000" data-category="gaming">
+    <img src="../static/css/img/img_4.png" alt="Компьютер 5" />
+    <h2>ПК для графики</h2>
+    <p>Идеально подходит для дизайнеров и 3D-редактирования.</p>
+    <button
+      class="details-btn"
+      data-name="ПК для графики"
+      data-description="Идеально подходит для дизайнеров и 3D-редактирования."
+      data-price="300000 руб."
+      data-image="img/img_4.png"
+    >Подробнее</button>
+  </article>
+
+  <article class="product-card budget" data-brand="brand3" data-price="100000" data-category="budget">
+    <img src="../static/css/img/img_5.png" alt="Компьютер 6" />
+    <h2>Бюджетный ПК</h2>
+    <p>Доступная цена и хорошая производительность.</p>
+    <button
+      class="details-btn"
+      data-name="Бюджетный ПК"
+      data-description="Доступная цена и хорошая производительность."
+      data-price="100000 руб."
+      data-image="img/img_5.png"
+    >Подробнее</button>
+  </article>
+
+</section>
+
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">×</span>
+    <img id="modal-image" src="" alt="Product Image" />
+    <h2 id="modal-title"></h2>
+    <p id="modal-description"></p>
+    <p id="modal-price"></p>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Интернет-магазин компьютеров</p>
+</footer>
+
+<script src="../static/css/js/app.js"></script>
+</body>
+
+</html>
