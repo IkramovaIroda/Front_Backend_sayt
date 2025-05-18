@@ -1,4 +1,4 @@
-package com.example.internetshop.entity;
+package org.example.sayt.Entity;
 
 import jakarta.persistence.*;
 
@@ -15,6 +15,8 @@ public class Product {
   private String description;
 
   private Double price;
+  private String brand;
+  private String category;
 
   @Column(name = "image_url")
   private String imageUrl;
@@ -22,18 +24,22 @@ public class Product {
 
   public Product() {}
 
-  public Product(String name, String description, Double price, String imageUrl) {
+  public Product(String name, String description, Double price, String brand, String category, String imageUrl) {
     this.name = name;
     this.description = description;
     this.price = price;
+    this.brand = brand;
+    this.category = category;
     this.imageUrl = imageUrl;
   }
 
-  public Product(Long id, String name, String description, Double price, String imageUrl) {
+  public Product(Long id, String name, String description, Double price,String brand, String category, String imageUrl) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.price = price;
+    this.brand = brand;
+    this.category = category;
     this.imageUrl = imageUrl;
   }
 
@@ -68,6 +74,22 @@ public class Product {
 
   public void setPrice(Double price) {
     this.price = price;
+  }
+
+  public String getBrand() {
+    return brand;
+  }
+
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
   }
 
   public String getImageUrl() {

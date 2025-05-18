@@ -1,6 +1,15 @@
+package org.example.sayt.Service;
+
+import org.example.sayt.Dto.ProductDTO;
+import org.example.sayt.Entity.Product;
+import org.example.sayt.Repository.ProductRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class ProductService {
-    private final ProductRepository repo;
+    private  ProductRepository repo;
 
     public ProductService(ProductRepository repo) {
         this.repo = repo;
@@ -11,12 +20,11 @@ public class ProductService {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
+                product.getBrand(),
+                product.getCategory(),
                 product.getImageUrl()
         )).toList();
     }
 
-    public List<Product> getAllProducts() {
-      return productRepository.findAll();
-    }
 
 }
