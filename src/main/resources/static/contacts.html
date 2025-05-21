@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>О нас / Контакты</title>
+    <link rel="stylesheet" href="/css/contacts.css" />
+</head>
+<body>
+<header>
+    <h1>О нас</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="cart.html">Корзина</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="contacts-container">
+    <section>
+        <h2>О магазине</h2>
+        <p>Мы — надёжный поставщик компьютеров и комплектующих. Работаем с 2020 года.</p>
+        <p><strong>Адрес:</strong> г. Ташкент, ул. Технологическая, 12</p>
+        <p><strong>Часы работы:</strong> Пн–Пт с 9:00 до 18:00</p>
+        <p><strong>Email:</strong> <a href="mailto:support@internetshop.uz">support@internetshop.uz</a></p>
+    </section>
+
+    <section>
+        <h3>Форма обратной связи</h3>
+        <form>
+            <label>
+                Имя:<br />
+                <input type="text" name="name" required />
+            </label><br /><br />
+            <label>
+                Email:<br />
+                <input type="email" name="email" required />
+            </label><br /><br />
+            <label>
+                Сообщение:<br />
+                <textarea name="message" rows="5" required></textarea>
+            </label><br /><br />
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>
+<head>
+    ...
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contacts-container {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        button {
+            padding: 8px 16px;
+        }
+    </style>
+</head>

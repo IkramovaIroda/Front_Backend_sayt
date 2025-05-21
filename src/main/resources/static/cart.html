@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина</title>
+  <link rel="stylesheet" href="/css/cart.css" />
+</head>
+<body>
+<header>
+  <h1>Корзина</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="cart.html">Корзина</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="cart-container">
+  <h2>Ваши товары</h2>
+  <ul id="cart-items">
+    <!-- Здесь динамически добавляются товары -->
+  </ul>
+  <p><strong>Общая сумма:</strong> <span id="cart-total">0</span> руб.</p>
+  <button onclick="checkout()">Оформить заказ</button>
+</main>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+      margin: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .cart-container {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    #cart-items {
+      padding-left: 20px;
+    }
+
+    #cart-items li {
+      margin-bottom: 10px;
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  </style>
+</head>

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Онлайн магазин компьютеров</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -19,42 +19,35 @@
   <h1>Добро пожаловать в наш магазин компьютеров</h1>
   <nav>
     <ul>
-      <li><a href="#home">Главная</a></li>
+      <li><a href="index.html">Главная</a></li>
       <li><a href="#catalog">Каталог</a></li>
-      <li><a href="#contacts">Контакты</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="cart.html">Корзина</a></li>
     </ul>
   </nav>
 </header>
+<div class="layout">
+  <aside class="filters">
+    <h2>Фильтр</h2>
+    <div class="filter-group">
+      <h3>Категория</h3>
+      <label><input type="checkbox" name="category" value="laptop" /> 💻 Ноутбуки</label>
+      <label><input type="checkbox" name="category" value="desktop" /> 🖥️ ПК</label>
+      <label><input type="checkbox" name="category" value="accessory" /> 🎧 Аксессуары</label>
+    </div>
+    <div class="filter-group">
+      <h3>Цена</h3>
+      <label><input type="checkbox" name="price" value="low" /> 💸 До 100000</label>
+      <label><input type="checkbox" name="price" value="mid" /> 💵 100000–200000</label>
+      <label><input type="checkbox" name="price" value="high" /> 💎 Более 200000</label>
+    </div>
+  </aside>
 
-<section class="filter">
-  <h3>Фильтры</h3>
-  <div>
-    <button onclick="filterProducts('all')">Все</button>
-    <button onclick="filterProducts('gaming')">Игровые</button>
-    <button onclick="filterProducts('office')">Офисные</button>
-    <button onclick="filterProducts('budget')">Бюджетные</button>
-    <button onclick="filterProducts('compact')">Компактные</button>
-  </div>
+  <section class="products" id="catalog">
+    <!-- Товары здесь -->
+  </section>
+</div>
 
-  <div>
-    <h4>Бренд</h4>
-    <button onclick="filterByBrand('brand1')">Brand 1</button>
-    <button onclick="filterByBrand('brand2')">Brand 2</button>
-    <button onclick="filterByBrand('brand3')">Brand 3</button>
-  </div>
-
-  <div>
-    <h4>Цена</h4>
-    <button onclick="filterByPrice('low')">До 100,000 руб.</button>
-    <button onclick="filterByPrice('medium')">100,000 - 250,000 руб.</button>
-    <button onclick="filterByPrice('high')">От 250,000 руб.</button>
-  </div>
-</section>
-
-<section class="products" id="catalog">
-
-
-</section>
 
 <div id="product-modal" class="modal">
   <div class="modal-content">
