@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ru">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +11,64 @@
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
+
+  <style>
+    .auth-bar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #ffffffee;
+      border-bottom-left-radius: 12px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .auth-bar span {
+      color: #333;
+      font-weight: bold;
+    }
+
+    .auth-bar button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #comments-section {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 8px;
+    }
+
+    #comments-section textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    #comments-section button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -26,6 +83,10 @@
     </ul>
   </nav>
 </header>
+
+<!-- Панель аутентификации -->
+<div id="auth-bar" class="auth-bar"></div>
+
 <div class="layout">
   <aside class="filters">
     <h2>Фильтр</h2>
@@ -45,9 +106,16 @@
 
   <section class="products" id="catalog">
     <!-- Товары здесь -->
+
+    <!-- Комментарии -->
+    <div id="comments-section">
+      <h3>Комментарии</h3>
+      <div id="comments-list"></div>
+      <textarea id="comment-content" placeholder="Ваш комментарий"></textarea>
+      <button onclick="submitComment()">Отправить</button>
+    </div>
   </section>
 </div>
-
 
 <div id="product-modal" class="modal">
   <div class="modal-content">
@@ -56,8 +124,73 @@
     <h2 id="modal-title"></h2>
     <p id="modal-description"></p>
     <p id="modal-price"></p>
+
+    <!-- Комментарии прямо внутри модального окна -->
+    <div id="comments-section">
+      <h3>Комментарии</h3>
+      <div id="comments-list"></div>
+      <textarea id="comment-content" placeholder="Ваш комментарий"></textarea>
+      <button onclick="submitComment()">Отправить</button>
+    </div>
   </div>
 </div>
+
+
+<script>
+  async function checkAuth() {
+    const response = await fetch('/api/user/me', {
+      credentials: 'include'
+    });
+
+    const authDiv = document.getElementById('auth-bar');
+
+    if (response.ok) {
+      const user = await response.json();
+      authDiv.innerHTML = `
+        <span>Привет, ${user.username}!</span>
+        <button onclick="logout()">Выйти</button>
+      `;
+    } else {
+      authDiv.innerHTML = `
+        <a href="/login">Войти</a> |
+        <a href="/register">Регистрация</a>
+      `;
+    }
+  }
+
+  function logout() {
+    fetch('/logout', { method: 'POST' })
+            .then(() => location.reload());
+  }
+
+  checkAuth();
+</script>
+
+<script>
+  const productId = 1; // или получить динамически
+
+  async function loadComments() {
+    const response = await fetch(`/api/comments/${productId}`);
+    const comments = await response.json();
+    const list = document.getElementById('comments-list');
+    list.innerHTML = comments.map(c =>
+            `<div><strong>${c.user.username}</strong>: ${c.content}</div>`
+    ).join('');
+  }
+
+  async function submitComment() {
+    const content = document.getElementById('comment-content').value;
+    await fetch('/api/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content, productId })
+    });
+    document.getElementById('comment-content').value = '';
+    loadComments();
+  }
+
+  loadComments();
+</script>
 
 <footer>
   <p>&copy; 2025 Интернет-магазин компьютеров</p>
@@ -65,5 +198,4 @@
 
 <script src="/js/app.js"></script>
 </body>
-
 </html>
